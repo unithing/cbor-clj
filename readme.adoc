@@ -2,6 +2,7 @@
 :Author: Nico Rikken (NR), Erwin Kroon (EK)
 :Revision: 0
 
+.Image copyright by Stinging Eyes, C Shell, 2009, CC-2.0-BY-SA
 image:doc/cbor-envisioned.png[link="https://www.flickr.com/photos/martinlatter/3231661532"]
 
 Super awesome http://cbor.io/[CBOR] library to be used for Clojure and ClojureScript.

@@ -1,4 +1,4 @@
-= cbor-clj image:https://travis-ci.org/unithing/cbor-clj.svg?branch=master[title="Build Status"]
+= cbor-clj image:https://travis-ci.org/unithing/cbor-clj.svg?branch=master[title="Build Status", link="https://travis-ci.org/unithing/cbor-clj/"]
 
 :Author: Nico Rikken (NR), Erwin Kroon (EK)
 :Revision: 0

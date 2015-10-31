@@ -6,7 +6,8 @@ Super awesome CBOR libarary to be used for Clojure and ClojureScript.
 
 _Currently very much a work in progress._
 
-.Goals
+== Goals
+
 * Native Clojure/ClojureScript
 * Fully compatible with the https://tools.ietf.org/html/rfc7049[CBOR spec]
 * Support for streaming to avoid unnecessary object storage
@@ -15,3 +16,7 @@ _Currently very much a work in progress._
 ** Meta-data report on parsed messages (e.g. size, nesting levels, used types)
 ** In-flight validation based on (meta) https://tools.ietf.org/html/draft-greevenbosch-appsawg-cbor-cddl[CDDL]
 ** Custom tags with associated parsing options
+
+== License
+
+This project is licensed according to the https://www.eclipse.org/legal/epl-v10.html[Eclipse Public License v 1.0 (EPL)]. If you believe to have a valid reason to question our licensing practice, please create a GitHub issue.

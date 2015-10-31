@@ -21,7 +21,7 @@
    100                   0x1864
    1000                  0x1903e8
    1000000               0x1a000f4240
-   1000000000000         0x1b000000e8d4a51000
+   1000000000000         0x1b000000e8d4a51000 ;;10
    18446744073709551615  0x1bffffffffffffffff
    18446744073709551616  0xc249010000000000000000
    -18446744073709551616 0x3bffffffffffffffff
@@ -40,13 +40,13 @@
         encoded-in (-> second biginteger (.toByteArray))
         encoded    (sut/encode decoded-in)
         decoded    (sut/decode encoded-in)]
-    (testing (str "encoding input: " (vec encoded-in) ", output: " (vec encoded))
+    (testing (str "encoding expected: " (vec encoded-in) ", actual: " (vec encoded))
       (is (= true (compare-sequences encoded-in encoded))))
-    (testing (str "decoding input: " decoded-in ", output: " decoded)
+    (testing (str "decoding expected: " decoded-in ", actual: " decoded)
       (is (= decoded-in decoded)))))
 
 ;;TODO: take more than 4
 (deftest rfc-test []
   (testing "rfc input"
-    (let [pairs (take 4 (partition 2 rfc-examples))]
+    (let [pairs (take 10 (partition 2 rfc-examples))]
       (doall (map test-pair pairs)))))

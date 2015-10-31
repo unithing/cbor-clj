@@ -8,8 +8,47 @@
 
 (ns cbor.core)
 
-(defn encode [value]
-  (byte-array (vector value)))
+(defn- zeros* [n]
+  (byte-array (repeat n 0x00)))
 
-(defn decode [value]
-  (first value))
+(def zeros (memoize zeros*))
+
+(defn- make-n-bytes [bytes n]
+  (let [actual-n (count bytes)]
+    (if (< actual-n n)
+      (byte-array (concat (zeros (- n actual-n)) bytes))
+      (byte-array (take-last n bytes)))))
+
+(defn- encode-uint [prefix nr value]
+  (into (vector)
+        (concat [prefix]
+                (-> (biginteger value)
+                    (.toByteArray)
+                    (make-n-bytes nr)))))
+
+(defn encode [value]
+  (condp >= value
+    0x17               (byte-array (vector value))
+    0xff               (byte-array (encode-uint 0x18 1 value))
+    0xffff             (byte-array (encode-uint 0x19 2 value))
+    0xffffffff         (byte-array (encode-uint 0x1a 4 value))
+    0xffffffffffffffff (byte-array (encode-uint 0x1b 8 value))))
+
+(defn- shifted-byte [n b]
+  (bit-shift-left (bit-and 0xff (int b)) (* n 8)))
+
+(defn- parse-bytes [bs]
+  (let [idxbs (map-indexed (fn [a b] [a b]) bs)
+        shifted-bytes (map (fn [[a b]] (shifted-byte a b)) idxbs)]
+    (reduce bit-or shifted-bytes)))
+
+(defn- take-bytes [n bytes]
+  (reverse (take n (rest bytes))))
+
+(defn decode [bytes]
+  (cond
+    (>= 0x17 (first bytes)) (first bytes)
+    (= 0x18  (first bytes)) (->> bytes (take-bytes 1) parse-bytes)
+    (= 0x19  (first bytes)) (->> bytes (take-bytes 2) parse-bytes)
+    (= 0x1a  (first bytes)) (->> bytes (take-bytes 4) parse-bytes)
+    (= 0x1b  (first bytes)) (->> bytes (take-bytes 8) parse-bytes)) )

@@ -2,7 +2,7 @@
 :Author: Nico Rikken (NR), Erwin Kroon (EK)
 :Revision: 0
 
-Super awesome CBOR libarary to be used for Clojure and ClojureScript.
+Super awesome http://cbor.io/[CBOR] library to be used for Clojure and ClojureScript.
 
 _Currently very much a work in progress._
 

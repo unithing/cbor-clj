@@ -1,0 +1,17 @@
+= cbor-clj
+:Author: Nico Rikken (NR), Erwin Kroon (EK)
+:Revision: 0
+
+Super awesome CBOR libarary to be used for Clojure and ClojureScript.
+
+_Currently very much a work in progress._
+
+.Goals
+* Native Clojure/ClojureScript
+* Fully compatible with the https://tools.ietf.org/html/rfc7049[CBOR spec]
+* Support for streaming to avoid unnecessary object storage
+* Optional features
+** Different strictness modes (e.g. definite rather than indefinite lenghts)
+** Meta-data report on parsed messages (e.g. size, nesting levels, used types)
+** In-flight validation based on (meta) https://tools.ietf.org/html/draft-greevenbosch-appsawg-cbor-cddl[CDDL]
+** Custom tags with associated parsing options

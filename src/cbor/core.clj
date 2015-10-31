@@ -8,4 +8,8 @@
 
 (ns cbor.core)
 
-(defn generate-cbor [vec])
+(defn encode [value]
+  (byte-array (vector value)))
+
+(defn decode [value]
+  (first value))
